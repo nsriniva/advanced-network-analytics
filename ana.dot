@@ -1,0 +1,56 @@
+digraph G{
+subgraph cluster0{
+label = "Advance Network Analytics";
+node[shape=box style=rounded]
+TelemetryCollector
+SNMPCollector
+GMICollector
+OtherCollector
+MongoDB[shape=circle style=none]
+SQLAnalytics
+MongoDBConnector_AC
+MongoDBConnector_GraphDB
+GitGraphDB[shape=circle]
+AnalyticEngine
+AnalyticCircuit
+
+SNMPCollector->MongoDB
+TelemetryCollector->MongoDB
+GMICollector->MongoDB
+OtherCollector->MongoDB
+MongoDB->SQLAnalytics
+MongoDB->MongoDBConnector_AC
+SQLAnalytics->MongoDBConnector_AC
+MongoDBConnector_AC->AnalyticEngine
+MongoDB->MongoDBConnector_GraphDB
+MongoDBConnector_GraphDB->GitGraphDB
+GitGraphDB->AnalyticEngine
+}
+
+subgraph cluster1{
+label = "Analytic Engine"
+Source1
+Source2
+AnalyticModule1
+AnalyticModule2
+AnalyticModule3
+AnalyticModule4
+Sink1
+Sink2
+Sink3
+
+subgraph cluster10{
+label = "Analytic Circuit 1"
+Source1->AnalyticModule1
+Source1->AnalyticModule4
+AnalyticModule4->Sink3
+AnalyticModule1->Sink1
+}
+subgraph cluster11{
+label = "Analytic Circuit 2"
+Source2->AnalyticModule2
+AnalyticModule2->AnalyticModule3
+AnalyticModule3->Sink2
+}
+}
+}
