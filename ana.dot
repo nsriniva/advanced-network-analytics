@@ -6,24 +6,24 @@ TelemetryCollector
 SNMPCollector
 GMICollector
 OtherCollector
-MongoDB[shape=circle style=none]
+RethinkDB[shape=circle style=none]
 SQLAnalytics
-MongoDBConnector_AC
-MongoDBConnector_GraphDB
+RethinkDBConnector_AC
+RethinkDBConnector_GraphDB
 GitGraphDB[shape=circle]
 AnalyticEngine
 AnalyticCircuit
 
-SNMPCollector->MongoDB
-TelemetryCollector->MongoDB
-GMICollector->MongoDB
-OtherCollector->MongoDB
-MongoDB->SQLAnalytics
-MongoDB->MongoDBConnector_AC
-SQLAnalytics->MongoDBConnector_AC
-MongoDBConnector_AC->AnalyticEngine
-MongoDB->MongoDBConnector_GraphDB
-MongoDBConnector_GraphDB->GitGraphDB
+SNMPCollector->RethinkDB
+TelemetryCollector->RethinkDB
+GMICollector->RethinkDB
+OtherCollector->RethinkDB
+RethinkDB->SQLAnalytics
+RethinkDB->RethinkDBConnector_AC
+SQLAnalytics->RethinkDBConnector_AC
+RethinkDBConnector_AC->AnalyticEngine
+RethinkDB->RethinkDBConnector_GraphDB
+RethinkDBConnector_GraphDB->GitGraphDB
 GitGraphDB->AnalyticEngine
 }
 
